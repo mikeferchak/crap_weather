@@ -23,10 +23,8 @@
 		323625EB1B3B2E520096E7BE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323625EA1B3B2E520096E7BE /* ComplicationController.swift */; };
 		323625ED1B3B2E530096E7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 323625EC1B3B2E530096E7BE /* Assets.xcassets */; };
 		3246B8B01B3CBED900F11D45 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323625FC1B3B2E760096E7BE /* Forecast.swift */; };
-		3246B8B11B3CBED900F11D45 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323625FE1B3B2FC60096E7BE /* Location.swift */; };
 		3246B8B21B3CBED900F11D45 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E62E751B3C9D5C002FE17D /* Request.swift */; };
 		3246B8B31B3CBF2E00F11D45 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323625FC1B3B2E760096E7BE /* Forecast.swift */; };
-		3246B8B41B3CBF2E00F11D45 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323625FE1B3B2FC60096E7BE /* Location.swift */; };
 		3246B8B51B3CBF2E00F11D45 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E62E751B3C9D5C002FE17D /* Request.swift */; };
 /* End PBXBuildFile section */
 
@@ -350,7 +348,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3246B8B01B3CBED900F11D45 /* Forecast.swift in Sources */,
-				3246B8B11B3CBED900F11D45 /* Location.swift in Sources */,
 				3246B8B21B3CBED900F11D45 /* Request.swift in Sources */,
 				323625C01B3B2E520096E7BE /* ViewController.swift in Sources */,
 				323625BE1B3B2E520096E7BE /* AppDelegate.swift in Sources */,
@@ -362,7 +359,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3246B8B31B3CBF2E00F11D45 /* Forecast.swift in Sources */,
-				3246B8B41B3CBF2E00F11D45 /* Location.swift in Sources */,
 				3246B8B51B3CBF2E00F11D45 /* Request.swift in Sources */,
 				323625E71B3B2E520096E7BE /* NotificationController.swift in Sources */,
 				323625E51B3B2E520096E7BE /* ExtensionDelegate.swift in Sources */,

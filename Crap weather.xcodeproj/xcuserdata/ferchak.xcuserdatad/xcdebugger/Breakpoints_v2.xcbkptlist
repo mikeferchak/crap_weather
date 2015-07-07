@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Crap weather/ViewController.swift"
-            timestampString = "457923370.086801"
+            timestampString = "457936439.0068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>

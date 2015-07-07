@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet var status:UILabel!
     
     @IBOutlet var cloudCoverLabel:UILabel!
@@ -17,17 +17,35 @@ class ViewController: UIViewController {
     @IBOutlet var temperatureLabel:UILabel!
     @IBOutlet var niceHoursLabel:UILabel!
     @IBOutlet weak var timeline_view: UIView!
+    @IBOutlet weak var time_label: UILabel!
+    @IBOutlet weak var pointer_x: NSLayoutConstraint!
     
+    @IBOutlet weak var timeline_pointer: UIView!
     @IBOutlet var hourlySlider:UISlider!
     
     var forecast = Forecast()
+
+    func time_for_forecast(forecast:NSDictionary) -> NSDate {
+        let data_time = forecast.valueForKey("time") as! Int
+        return NSDate(timeIntervalSince1970: NSTimeInterval(data_time))
+    }
     
+    func forecast_time_label(forecast:NSDictionary) -> String {
+        let forecast_date = time_for_forecast(forecast)
+        let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        return formatter.stringFromDate(forecast_date)
+    }
 
     func refresh_status_for(forecast: NSDictionary) {
         if Forecast().is_pleasant_at(forecast) {
-            status.text = "YEP"
+            status.text = "PLEASANT"
+            status.textColor = UIColor.whiteColor()
         } else {
             status.text = "CRAP"
+            status.textColor = UIColor.lightGrayColor()
         }
         
         if let cloudCover = forecast.valueForKey("cloudCover"),
@@ -38,11 +56,22 @@ class ViewController: UIViewController {
                 precipIntensityLabel.text = "Precipitation intensity: \(precipIntensity)"
                 precipProbabilityLabel.text = "Precipitation probability: \(precipProbability)"
                 temperatureLabel.text = "Temperature: \(temperature)"
+                if hourlySlider.value != 0 {
+                    time_label.text = self.forecast_time_label(forecast)
+                } else {
+                    time_label.text = "Currently"
+                }
         }
     }
     
     @IBAction func hourly_slider_changed(sender: AnyObject) {
+        timeline_view.layoutIfNeeded()
         let rounded_value = Int(hourlySlider.value)
+        let width = timeline_view.bounds.width
+        let x_constant = CGFloat(width) * ( CGFloat(hourlySlider.value) / CGFloat(hourlySlider.maximumValue) )
+        
+        pointer_x.constant = x_constant
+        
         refresh_status_for(forecast.hourly[rounded_value])
     }
     
@@ -75,13 +104,14 @@ class ViewController: UIViewController {
             let this_x = CGFloat(slice_width) * CGFloat(index)
             
             if (forecast[index].valueForKey("pleasant") as! Bool) == true {
-                newView.backgroundColor = UIColor.lightGrayColor()
+                newView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
             } else {
                 newView.backgroundColor = UIColor.blackColor()
             }
             
             newView.translatesAutoresizingMaskIntoConstraints = false
             timeline_view.addSubview(newView)
+            timeline_view.sendSubviewToBack(newView)
             
             let horizontalConstraint = NSLayoutConstraint(item: newView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: timeline_view, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: this_x)
             timeline_view.addConstraint(horizontalConstraint)
